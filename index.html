@@ -1,12 +1,14 @@
 <html>
 
 <head>
-  <title>WEBP vs PNG vs JPEG</title>
+  <meta http-equiv="cache-control" content="no-cache, no-store">
+  <title>WEBP vs PNG vs AVIF vs JPEG</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: monospace;
     }
 
     body,
@@ -24,6 +26,7 @@
 
     .box {
       flex: 1 1 50%;
+      flex-flow: column;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,15 +39,31 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .box h3 {
+      padding: 2px;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="box"><img src="images/webp/1.webp" alt="1.webp"></div>
-    <div class="box"><img src="images/png/1.png" alt="1.png"></div>
-    <div class="box"><img src="images/jpg-baseline/1.jpg" alt="1.jpg"></div>
-    <div class="box"><img src="images/jpg-progressive/1.jpg" alt="1.jpg"></div>
+    <div class="box">
+      <h3>webp</h3>
+      <img src="images/webp/1.webp" alt="a webp picture">
+    </div>
+    <div class="box">
+      <h3>png</h3>
+      <img src="images/png/1.png" alt="a png picture">
+    </div>
+    <div class="box">
+      <h3>avif</h3>
+      <img src="images/avif/1.avif" alt="an avif picture">
+    </div>
+    <div class="box">
+      <h3>jpeg prog</h3>
+      <img src="images/jpg-progressive/1.jpg" alt="a jpg picture">
+    </div>
   </div>
 </body>
 
