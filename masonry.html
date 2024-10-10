@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webp / JPEG Masonry</title>
+    <style>
+        bbody {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .masonry {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            width: 600px;
+            margin: 0 auto;
+            justify-content: center;
+            align-items: start;
+        }
+
+        .masonry img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+            max-height: 200px;
+        }
+
+        .format-info {
+            text-align: center;
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="format-info" id="format-info"></div>
+    <div class="masonry" id="masonry"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const format = urlParams.get('format') === 'webp' ? 'webp' : 'jpeg';
+        const imageUrl = `images/masonry/1.${format}`;
+
+        const formatInfo = document.getElementById('format-info');
+        formatInfo.textContent = format;
+
+        function loadImages(count) {
+            const masonryContainer = document.getElementById('masonry');
+
+            for (let i = 0; i < count; i++) {
+                const randomParam = `?nocache=${new Date().getTime()}_${Math.random()}`;
+                const imgElement = document.createElement('img');
+                imgElement.src = imageUrl + randomParam;
+                imgElement.loading = 'lazy';
+                masonryContainer.appendChild(imgElement);
+            }
+        }
+
+        loadImages(100);
+    </script>
+</body>
+
+</html>

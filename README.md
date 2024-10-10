@@ -1,6 +1,10 @@
 # jpeg-progressive
 
-Progressive JPEG [Demo](https://qmaru.github.io/jpeg-progressive/)
++ Progressive JPEG [Demo](https://qmaru.github.io/jpeg-progressive/index.html)
+
++ Masonry Demo
+  + [JPEG](https://qmaru.github.io/jpeg-progressive/masonry.html)
+  + [WEBP](https://qmaru.github.io/jpeg-progressive/masonry.html?format=webp)
 
 All images are converted from PNG.
 
