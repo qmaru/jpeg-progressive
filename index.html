@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta http-equiv="cache-control" content="no-cache, no-store">
   <link rel="icon" href="images/favicon.ico" />
-  <title>WEBP vs PNG vs AVIF vs JPEG</title>
+  <title>WEBP vs PNG vs AVIF vs JPEG/JXL</title>
   <style>
     * {
       margin: 0;
@@ -33,6 +34,7 @@
       align-items: center;
       overflow: hidden;
       padding: 5px;
+      position: relative;
     }
 
     .box img,
@@ -44,6 +46,29 @@
 
     .box h3 {
       padding: 2px;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
     }
   </style>
 </head>
@@ -62,14 +87,55 @@
       <h3>avif</h3>
       <img src="images/avif/1.avif" alt="an avif picture">
     </div>
-    <div class="box">
-      <h3>jpeg prog</h3>
+    <div class="box" id="jpegBox">
+      <h3 id="jpegTitle">jpeg prog</h3>
       <picture>
-        <source srcset="images/jpg/1_p.jxl" type="image/jxl">
-        <img src="images/jpg/1_p.jpg" alt="a jpg picture">
+        <source id="jxlSource" srcset="images/jpg/1_p.jxl" type="image/jxl">
+        <img id="jpegImg" src="images/jpg/1_p.jpg" alt="a jpg picture">
       </picture>
+      <button class="toggle-btn" id="toggleBtn">Switch to JXL</button>
     </div>
   </div>
+
+  <script>
+    const box = document.getElementById("jpegBox");
+    const title = document.getElementById("jpegTitle");
+    const img = document.getElementById("jpegImg");
+    const source = document.getElementById("jxlSource");
+    const btn = document.getElementById("toggleBtn");
+
+    let useJXL = false;
+
+    function updateTitleAndButton() {
+      if (useJXL) {
+        title.textContent = "jxl prog";
+        btn.textContent = "Switch to JPEG";
+      } else {
+        title.textContent = "jpeg prog";
+        btn.textContent = "Switch to JXL";
+      }
+    }
+
+    btn.addEventListener("click", () => {
+      useJXL = !useJXL;
+
+      if (useJXL) {
+        // Force using JXL
+        source.srcset = "images/jpg/1_p.jxl";
+        img.src = "images/jpg/1_p.jxl";
+      } else {
+        // Switch back to JPEG
+        source.srcset = "";
+        img.src = "images/jpg/1_p.jpg";
+      }
+
+      updateTitleAndButton();
+    });
+
+    // Sync initial state
+    updateTitleAndButton();
+  </script>
+
 </body>
 
 </html>

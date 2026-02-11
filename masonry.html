@@ -1,18 +1,27 @@
 <!DOCTYPE html>
+<html>
 
 <head>
     <meta http-equiv="cache-control" content="no-cache, no-store">
     <link rel="icon" href="images/favicon.ico" />
-    <title>Webp / JPEG Masonry</title>
+    <title>Progressive Image Format Demo</title>
     <style>
-        bbody {
+        body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             margin: 0;
-            padding: 0;
+            padding: 10px;
             background-color: #f0f0f0;
+            font-family: monospace;
+        }
+
+        .controls {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         .masonry {
@@ -34,39 +43,60 @@
             object-fit: contain;
             max-height: 200px;
         }
-
-        .format-info {
-            text-align: center;
-            padding: 2px;
-        }
     </style>
 </head>
 
 <body>
-    <div class="format-info" id="format-info"></div>
+    <div class="controls">
+        <label for="formatSelect">Format:</label>
+        <select id="formatSelect">
+            <option value="jpeg">JPEG (progressive)</option>
+            <option value="webp">WebP</option>
+            <option value="avif">AVIF</option>
+            <option value="jxl">JXL</option>
+        </select>
+    </div>
+
     <div class="masonry" id="masonry"></div>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const format = urlParams.get('format') === 'webp' ? 'webp' : 'jpeg';
-        const imageUrl = `images/masonry/1.${format}`;
+        const formatSelect = document.getElementById("formatSelect");
+        const masonryContainer = document.getElementById("masonry");
 
-        const formatInfo = document.getElementById('format-info');
-        formatInfo.textContent = format;
+        const imageCount = 100;
 
-        function loadImages(count) {
-            const masonryContainer = document.getElementById('masonry');
+        function getImageUrl(format) {
+            return `images/masonry/1.${format}`;
+        }
+
+        function clearImages() {
+            masonryContainer.innerHTML = "";
+        }
+
+        function loadImages(format, count) {
+            const baseUrl = getImageUrl(format);
 
             for (let i = 0; i < count; i++) {
-                const randomParam = `?nocache=${new Date().getTime()}_${Math.random()}`;
-                const imgElement = document.createElement('img');
-                imgElement.src = imageUrl + randomParam;
-                imgElement.loading = 'lazy';
-                masonryContainer.appendChild(imgElement);
+                const randomParam = `?nocache=${Date.now()}_${Math.random()}`;
+                const img = document.createElement("img");
+                img.src = baseUrl + randomParam;
+                img.loading = "lazy";
+                masonryContainer.appendChild(img);
             }
         }
 
-        loadImages(100);
+        function reload(format) {
+            clearImages();
+            loadImages(format, imageCount);
+        }
+
+        formatSelect.addEventListener("change", () => {
+            const format = formatSelect.value;
+            reload(format);
+        });
+
+        // Initial load
+        reload(formatSelect.value);
     </script>
 </body>
 
