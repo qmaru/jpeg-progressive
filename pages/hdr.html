@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDR Formats | Image Format Tests</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../js/gallery.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div>
+                <h1>HDR Formats</h1>
+                <p class="intro">Native HDR JXL compared with gain-map JPEG, HDR AVIF and HDR PNG.</p>
+            </div>
+            <a class="back-link" href="../index.html">Back to categories</a>
+        </header>
+
+        <section id="hdr-showcase">
+            <div class="section-heading">
+                <div>
+                    <h2>HDR Showcase</h2>
+                    <p class="description">The switch controls the dynamic range limit for this section.</p>
+                </div>
+                <label class="dynamic-range-toggle">
+                    <input type="checkbox" id="hdr-toggle" checked>
+                    HDR: <strong id="hdr-toggle-state">ON</strong>
+                </label>
+            </div>
+
+            <div class="grid">
+                <article class="card">
+                    <div class="card-header"><div class="card-title">JPEG XL HDR</div><div class="card-meta">16-bit · Rec.2100 · PQ · 2182 nits</div><div class="badge">Native HDR</div></div>
+                    <div class="media"><img src="../images/hdr/jxl-rec-2020-16bit.jxl" alt="JPEG XL HDR"></div>
+                    <div class="info"></div>
+                </article>
+                <article class="card">
+                    <div class="card-header"><div class="card-title">Ultra HDR JPEG</div><div class="card-meta">JPEG · HDR Gain Map</div><div class="badge">Gain Map</div></div>
+                    <div class="media"><img src="../images/hdr/ultra_hdr.jpg" alt="Ultra HDR JPEG"></div>
+                    <div class="info"></div>
+                </article>
+                <article class="card">
+                    <div class="card-header"><div class="card-title">HDR AVIF</div><div class="card-meta">AVIF · HDR</div><div class="badge">AVIF</div></div>
+                    <div class="media"><img src="../images/hdr/hdr_cosmos01650_cicp9-16-9_yuv420_limited_qp10.avif" alt="HDR AVIF"></div>
+                    <div class="info"></div>
+                </article>
+                <article class="card">
+                    <div class="card-header"><div class="card-title">HDR PNG</div><div class="card-meta">PNG · cICP · HDR</div><div class="badge">HDR PNG</div></div>
+                    <div class="media"><img src="../images/hdr/gc-90deg-m14-an03-ax1000-hdr500-16k.png.png" alt="HDR PNG"></div>
+                    <div class="info"></div>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

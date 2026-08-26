@@ -1,134 +1,58 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-  <meta http-equiv="cache-control" content="no-cache, no-store">
-  <link rel="icon" href="images/favicon.ico" />
-  <title>WEBP vs PNG vs AVIF vs JPEG/JXL</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: monospace;
-    }
-
-    body,
-    html {
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      height: 100%;
-    }
-
-    .box {
-      flex: 1 1 50%;
-      flex-flow: column;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      padding: 5px;
-      position: relative;
-    }
-
-    .box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .box h3 {
-      padding: 2px;
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-size: 14px;
-    }
-
-    .toggle-btn {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      padding: 6px 10px;
-      font-size: 12px;
-      cursor: pointer;
-      border: none;
-      border-radius: 4px;
-      background: rgba(0, 0, 0, 0.6);
-      color: #fff;
-    }
-
-    .toggle-btn:hover {
-      background: rgba(0, 0, 0, 0.8);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Format Tests</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="box">
-      <h3>webp</h3>
-      <img src="images/webp/1.webp" alt="a webp picture">
-    </div>
-    <div class="box">
-      <h3>png interlace</h3>
-      <img src="images/png/1_i.png" alt="a png picture">
-    </div>
-    <div class="box">
-      <h3>avif</h3>
-      <img src="images/avif/1.avif" alt="an avif picture">
-    </div>
-    <div class="box" id="jpegBox">
-      <h3 id="jpegTitle">jpeg prog</h3>
-      <img id="jpegImg" src="images/jpg/1_p.jpg" alt="a picture">
-      <button class="toggle-btn" id="toggleBtn">Switch to JXL</button>
-    </div>
-  </div>
+    <main>
+        <header>
+            <div>
+                <h1>Image Format Tests</h1>
+                <p class="intro">A compact reference for HDR, JPEG XL and modern image formats.</p>
+            </div>
+        </header>
 
-  <script>
-    const title = document.getElementById("jpegTitle");
-    const img = document.getElementById("jpegImg");
-    const btn = document.getElementById("toggleBtn");
+        <nav class="category-list" aria-label="Image test categories">
+            <a class="category-link" href="pages/hdr.html">
+                <strong>HDR Formats</strong>
+                <span>JXL, gain-map JPEG, AVIF and PNG</span>
+            </a>
+            <a class="category-link" href="pages/jxl-features.html">
+                <strong>JXL Features</strong>
+                <span>Lossless, lossy and progressive encoding</span>
+            </a>
+            <a class="category-link" href="pages/animation.html">
+                <strong>Animation</strong>
+                <span>GIF, JXL, WebP and AVIF</span>
+            </a>
+            <a class="category-link" href="pages/alpha.html">
+                <strong>Alpha Channel</strong>
+                <span>RGBA support across image formats</span>
+            </a>
+            <a class="category-link" href="pages/sdr-comparison.html">
+                <strong>Progressive SDR</strong>
+                <span>Progressive encoding comparison</span>
+            </a>
+            <a class="category-link" href="pages/sdr-standard-comparison.html">
+                <strong>Standard SDR</strong>
+                <span>Standard encoding comparison</span>
+            </a>
+            <a class="category-link" href="pages/jpeg-recompression.html">
+                <strong>JPEG Recompression</strong>
+                <span>JPEG to JXL and back again</span>
+            </a>
+        </nav>
 
-    let useJXL = false;
-
-    function updateUI() {
-      if (useJXL) {
-        title.textContent = "jxl prog";
-        btn.textContent = "Switch to JPEG";
-      } else {
-        title.textContent = "jpeg prog";
-        btn.textContent = "Switch to JXL";
-      }
-    }
-
-    btn.addEventListener("click", () => {
-      useJXL = !useJXL;
-
-      const base = useJXL
-        ? "images/jpg/1_p.jxl"
-        : "images/jpg/1_p.jpg";
-
-      // Add a cache buster to force reload
-      const url = base + "?nocache=" + Date.now();
-
-      img.src = url;
-
-      updateUI();
-    });
-
-    // Initial state
-    updateUI();
-  </script>
-
+        <footer>
+            HDR source: <a href="https://en.bandisoft.com/bandiview/help/hdr-samples/" target="_blank"
+                rel="noreferrer">Bandisoft</a>
+        </footer>
+    </main>
 </body>
 
 </html>
